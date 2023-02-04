@@ -2,15 +2,15 @@ class ProductManager {
     
 
     constructor() {
-        this.products = []
+        this.productos = []
     }
 
     getProducts(){
-        return this.products
+        return this.productos
     }
 
     addProduct(title, description, price, thumbnail, code, stock, id){
-        const Producto = {
+        const CadaProducto = {
             title,
             description,
             price,
@@ -19,31 +19,30 @@ class ProductManager {
             stock,
             id,
         }
-         if (this.products.length === 0) {
-            Producto.id = 1;
+         if (this.productos.length === 0) {
+            CadaProducto.id = 1;
          } else {
-            Producto.id = this.products[this.products.length - 1].id + 1;
+            CadaProducto.id = this.productos[this.productos.length - 1].id + 1;
          }
-        this.products.push(Producto)
+        this.productos.push(CadaProducto)
     }
 
 
-    getProductbyId(idProduct) {
-        const evento = this.products.find(e => e.id === idProduct);
-        if (!evento) {
-            throw new Error("No encontrado");
-        }
-        const idRegistrado = evento.prods.includes(idProduct);
-        if (idRegistrado) {
-            throw new Error("Usuario ya registrado");
-        }
-        evento.prods.push(idProduct);
-    }
-
+     getProductbyId(idCadaProducto) {
+         const elegirProducto = this.productos.find(e => e.id === idCadaProducto);
+         if (!elegirProducto) {
+             throw new Error("No encontrado");
+         }
+          const nuevoProducto = {
+              ...elegirProducto,
+          }
+        this.productos.push(nuevoProducto);
+     }
 }
 
-const Prod = new ProductManager()
-Prod.addProduct('Evento1','Lugar1',2.5, ' asdasd' , 'asas', 1)
-Prod.getProductbyId()
-console.log(Prod.getProducts())
-console.log(Prod)
+const Productor = new ProductManager()
+Productor.addProduct('Evento1','Lugar1',2.5, ' asdasd' , 'asas', 1)
+Productor.addProduct('Evento1','Lugar1',2.5, ' asdasd' , 'asas', 1)
+Productor.getProductbyId(1)
+console.log(Productor.getProducts())
+// console.log(Productor)
